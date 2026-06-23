@@ -1,0 +1,55 @@
+---
+import { logsPersonals } from "../lib/models/personal-log.js";
+---
+
+<section
+    class="mt-20 mb-10 text-center border-t border-pink-900/50 pt-10 font-['Fira_Code']"
+>
+    <h2
+        class="font-bold mb-8 flex items-center gap-3 font-['DotGothic16'] text-2xl text-pink-100"
+    >
+        <span
+            class="bg-pink-500/10 text-pink-500 border border-pink-500/30 px-2 py-1 rounded text-sm text-neon font-['Fira_Code'] tracking-widest"
+            >CMD</span
+        > ls ./Comentarios_personales
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {
+            logsPersonals.map((log) => (
+                <div
+                    class={`neo-card p-5 rounded-lg border-l-4 ${
+                        log.color === "green"
+                            ? "border-t border-pink-900/50 hover:border-green-400/80"
+                            : log.color === "pink"
+                              ? "border-t border-pink-900/50 hover:border-pink-400/80"
+                              : "border-t border-pink-900/50 hover:border-yellow-400/80"
+                    }`}
+                >
+                    <p class="text-sm text-neon font-['Fira_Code'] tracking-widest">{`[${log.date}]`}</p>
+                    <p class="text-sm text-white mb-2 font-bold">{log.title}</p>
+                    <p class="text-sm text-neon font-['Fira_Code'] tracking-widest">{`"${log.content}"`}</p>
+                </div>
+            ))
+        }
+    </div>
+    <div class="flex justify-center">
+        <button
+            class="text-sm text-neon font-['Fira_Code'] tracking-widest mt-8 alert"
+        >
+            <p class="hover:text-pink-400/80 transition-colors duration-300">
+                console.log("Ver más comentarios personales...");
+            </p>
+        </button>
+    </div>
+
+    <script>
+        const button = document.querySelector(".alert");
+        if (button) {
+            button.addEventListener("click", () => {
+                alert(
+                    "¡Gracias por tu interés! Actualmente, estos son todos los comentarios personales que tengo para compartir. Estoy trabajando en nuevas experiencias y aprendizajes, así que mantente atento a futuras actualizaciones. :)",
+                );
+            });
+        }
+    </script>
+</section>

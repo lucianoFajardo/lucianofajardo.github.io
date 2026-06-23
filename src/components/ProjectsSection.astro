@@ -1,0 +1,20 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+import { getGithubRepos } from "../lib/server/github";
+const userGithub = import.meta.env.PUBLIC_GITHUB_USERNAME;
+const projects = await getGithubRepos(userGithub);
+---
+
+<section id="projects" class="mt-16 font-['Fira_Code']">
+    <h2
+        class="font-bold mb-8 flex items-center gap-3 font-['DotGothic16'] text-2xl text-pink-100"
+    >
+        <span
+            class="bg-pink-500/10 text-pink-500 border border-pink-500/30 px-2 py-1 rounded text-sm text-neon font-['Fira_Code'] tracking-widest"
+            >CMD</span
+        > ls ./github_repos
+    </h2>
+    <div class="grid md:grid-cols-3 gap-6">
+        {projects.map((p: any) => <ProjectCard {...p} />)}
+    </div>
+</section>

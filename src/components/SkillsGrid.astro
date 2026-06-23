@@ -1,0 +1,39 @@
+---
+import { skills } from "../lib/models/skills-log";
+---
+
+<section class="mt-16 reveal delay-1 md:w-1/2 font-['Fira_Code']">
+    <h2 class=" font-bold mb-8 flex items-center gap-3 font-['DotGothic16'] text-2xl text-pink-100">
+        <span class="bg-pink-500/10 text-pink-500 border border-pink-500/30 px-2 py-1 rounded text-sm text-neon font-['Fira_Code'] tracking-widest"
+            >CMD</span
+        > ls ./habilidades
+    </h2>
+    <div class="space-y-4">
+        {
+            skills.map((c) => (
+                <div class="p-4 bg-[#1a0b16]/50 border border-pink-900/40 rounded glow-hover hover:border-pink-500/50 hover:bg-[#2a102a]/80 transition-all duration-300 group">
+                    <div class="flex items-center justify-between mb-3 border-b border-pink-900/30 pb-2">
+                        <span class="text-pink-400 font-['DotGothic16'] text-lg text-neon group-hover:text-pink-300">{c.file}</span>
+                        <svg
+                            class="w-4 h-4 text-pink-700/50 group-hover:text-pink-400 transition-colors"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            {" "}
+                            <path
+                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />{" "}
+                        </svg>{" "}
+                    </div>{" "}
+                    <p class="text-xs text-pink-200/70 leading-relaxed font-['Noto_Sans_JP']">
+                        {c.skillsList.join(", ")}
+                    </p>{" "}
+                </div>
+            ))
+        }
+    </div>
+</section> 

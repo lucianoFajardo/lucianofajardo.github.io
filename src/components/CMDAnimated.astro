@@ -1,0 +1,94 @@
+---
+
+---
+
+<section class="mt-16 reveal md:w-1/2 md:ml-6 font-['Fira_Code']">
+    <div
+        class="bg-[#1f0a1c]/80 border border-pink-900 shadow-[0_0_15px_rgba(236,72,153,0.1)] rounded-lg p-6 font-mono text-sm overflow-hidden"
+        id="diagnostic-console"
+    >
+        <div
+            class="flex items-center gap-2 mb-4 border-b border-pink-900 pb-2"
+        >
+            <span class="text-pink-500 text-neon">●</span>
+            <span class="text-pink-300">status_check.exe</span>
+        </div>
+        <div id="console-output" class="space-y-1"></div>
+    </div>
+</section>
+
+<script>
+    // Lógica de la Consola de Diagnóstico
+    const consoleOutput = document.getElementById("console-output");
+    const lines = [
+        {
+            text: "> Iniciando diagnóstico de sistema...",
+            color: "text-pink-400/80",
+        },
+        {
+            text: "> Verificando entorno de desarrollo...",
+            color: "text-pink-400/80",
+        },
+        { text: "[OK] Astro Engine cargado.", color: "text-green-400" },
+        { text: "[OK] Funciones Cyber-Neon integradas.", color: "text-green-400" },
+        {
+            text: "> Analizando habilidades del usuario...",
+            color: "text-pink-400/80",
+        },
+        { text: "[INFO] Seniority: Junior detectado.", color: "text-pink-400" },
+        { text: "[INFO] Pasión por el código: 100%", color: "text-pink-400" },
+        {
+            text: "> Preparado para el siguiente desafío.",
+            color: "text-pink-100 font-bold",
+        },
+    ];
+
+    let lineIndex = 0;
+    let started = false;
+
+    function typeConsole() {
+        if (lineIndex < lines.length) {
+            const lineDiv = document.createElement("div");
+            lineDiv.className = `console-line ${lines[lineIndex].color}`;
+            lineDiv.innerText = lines[lineIndex].text;
+            if (consoleOutput) {
+                consoleOutput.appendChild(lineDiv);
+                setTimeout(() => lineDiv.classList.add("visible"), 50);
+            }
+            lineIndex++;
+            setTimeout(typeConsole, 600);
+        }
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === "diagnostic-console" && !started) {
+                        started = true;
+                        typeConsole();
+                    }
+                    entry.target.classList.add("reveal");
+                    if (entry.target.id === "habilidades") {
+                        entry.target
+                            .querySelectorAll(".skill-progress")
+                            .forEach((bar) => {
+                                const barEl = bar as HTMLElement;
+                                barEl.style.width =
+                                    barEl.parentElement &&
+                                    barEl.parentElement.nextElementSibling
+                                        ? ""
+                                        : barEl.style.width;
+                            });
+                    }
+                }
+            });
+        },
+        { threshold: 0.2 },
+    );
+    document
+        .querySelectorAll("section, header, footer, #diagnostic-console")
+        .forEach((el) => {
+            observer.observe(el);
+        });
+</script>

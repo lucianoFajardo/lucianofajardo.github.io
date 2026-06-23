@@ -1,0 +1,37 @@
+---
+const today = new Date().toLocaleDateString("es-ES");
+const name = "Luciano Fajardo";
+---
+
+<div class="p-6 md:p-10 relative z-10">
+    <div class="text-pink-400 mb-2 font-['DotGothic16'] text-lg">
+        ➜ ~/root <span class="text-pink-100">whoami</span>
+    </div>
+    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-pink-100 font-['DotGothic16'] tracking-tight">
+        Hola, soy <span class="text-pink-500 text-neon">{name}</span>
+    </h1>
+    <p class="text-xl text-pink-200/80 mb-6 leading-relaxed font-['Noto_Sans_JP']">
+        &gt; Programador Junior Fullstack.<br />
+        &gt; Especializado en construir soluciones limpias y eficientes.<br />
+        &gt; Entusiasta del código abierto y la arquitectura web.
+    </p>
+    <div class="flex flex-wrap gap-4 font-['Fira_Code']">
+        <a
+            href="#projects"
+            class="px-6 py-2 border border-pink-500 text-pink-400 hover:bg-pink-500/10 hover:shadow-[0_0_15px_rgba(236,72,153,0.3)] transition-all"
+            >[ Ver_Proyectos ]</a
+        >
+        <button>
+            <a
+                href="/cv_luciano-fajardo.pdf"
+                class="px-6 py-2 bg-pink-600 text-white hover:bg-pink-500 hover:shadow-[0_0_15px_rgba(236,72,153,0.5)] transition-all"
+                download
+            >
+                Descargar_CV.exe
+            </a>
+        </button>
+        <div class="mt-8 text-pink-500/50 text-sm italic font-['Noto_Sans_JP'] w-full">
+            Última actualización: <span>{today}</span>
+        </div>
+    </div>
+</div>

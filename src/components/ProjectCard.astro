@@ -1,0 +1,41 @@
+---
+// interfaz de las props de los componentes
+interface Props {
+    image?: string;
+    title: string;
+    description: string;
+    tags: string[];
+    href?: string;
+}
+const { title, description, tags, href = "#" , image} = Astro.props as Props;
+---
+
+<div
+    class="bg-[#1a0b16] border border-pink-900/40 overflow-hidden hover:border-pink-500/50 hover:shadow-[0_0_20px_rgba(236,72,153,0.15)] transition-all group"
+>
+    <div
+        class="h-40 bg-[#2a102a] flex items-center justify-center text-pink-500/50 relative overflow-hidden font-['DotGothic16'] text-lg tracking-widest"
+    >
+        {image && <img src={image} alt={title} class="z-10 group-hover:text-pink-300 transition-colors rounded-2xl" />}
+        <div class="absolute inset-0 opacity-20 pink-gradient"></div>
+    </div>
+    <div class="p-6">
+        <h3 class=" font-bold mb-2 text-pink-100 font-['DotGothic16'] text-2xl">{title}</h3>
+        <p class="text-pink-200/70 text-sm mb-4 font-['Noto_Sans_JP']">{description}</p>
+        <div class="flex gap-2 mb-4">
+            {
+                tags.map((t) => (
+                    <span class="text-[10px] px-2 py-0.5 border border-pink-900/50 text-pink-400 italic">
+                        #{t}
+                    </span>
+                ))
+            }
+        </div>
+        <a
+            href={href}
+            class="text-pink-400 hover:text-pink-300 hover:underline text-sm flex items-center gap-1 font-['DotGothic16'] text-neon"
+        >
+            git checkout branch/main <span class="text-lg">→</span>
+        </a>
+    </div>
+</div>

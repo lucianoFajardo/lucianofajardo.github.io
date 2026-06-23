@@ -1,0 +1,38 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Scanline from "../components/Scanline.astro";
+import TerminalHeader from "../components/TerminalHeader.astro";
+import Hero from "../components/Hero.astro";
+import SkillsGrid from "../components/SkillsGrid.astro";
+import ProjectsSection from "../components/ProjectsSection.astro";
+import Footer from "../components/Footer.astro";
+import CMDAnimated from "../components/CMDAnimated.astro";
+import LogPersonalSh from "../components/LogPersonalSh.astro";
+import ServicesPersonal from "src/components/ServicesPersonal.astro";
+---
+
+<Layout>
+	<Scanline />
+	<main class="max-w-4xl mx-auto">
+		<div
+			class="terminal-window rounded-t-lg overflow-hidden bg-[#1f0a1c] border border-pink-900 shadow-[0_0_30px_rgba(236,72,153,0.15)] relative z-10"
+		>
+			<div
+				class="absolute inset-0 bg-[linear-gradient(rgba(236,72,153,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(236,72,153,0.03)_1px,transparent_1px)] bg-size:20px_20px pointer-events-none opacity-50 z-0"
+			>
+			</div>
+			<TerminalHeader />
+			<Hero />
+		</div>
+		<div class="mt-4 flex flex-col md:flex-row items-start gap-6">
+			<SkillsGrid />
+			<CMDAnimated />
+		</div>
+		<ProjectsSection />
+		<div class="mt-6">
+			<ServicesPersonal />
+		</div>
+		<LogPersonalSh />
+		<Footer />
+	</main>
+</Layout>
