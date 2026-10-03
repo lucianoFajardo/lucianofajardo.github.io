@@ -16,6 +16,6 @@ export default async function getPersonalLogs() {
       color: () => getRandomColor()
     }));
   } catch (error) {
-    throw new Error("Failed to fetch personal logs");
+    throw new Error("Failed to fetch personal logs -> " + error);
   }
 }

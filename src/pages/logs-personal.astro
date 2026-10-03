@@ -2,7 +2,13 @@
 import Layout from "../layouts/Layout.astro";
 import getPersonalLogs from "../lib/server/logs_personal_server";
 
-const logsPersonalsData = await getPersonalLogs();
+let logsPersonalsData = [];
+try {
+  logsPersonalsData = await getPersonalLogs();
+} catch (error) {
+  console.error("Error fetching personal logs:", error);
+  logsPersonalsData = [{ id: 0, title: "Error", content: "Failed to fetch personal logs", date: new Date().toISOString(), color: async () => "#ff0000" }];
+}
 ---
 
 <Layout>
