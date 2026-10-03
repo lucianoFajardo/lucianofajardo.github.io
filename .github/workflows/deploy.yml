@@ -32,6 +32,12 @@ jobs:
           JSONBIN_BIN_ID: ${{ secrets.JSONBIN_BIN_ID }}
           PUBLIC_GITHUB_USERNAME: 'lucianofajardo'
           GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
   deploy:
     needs: build
     runs-on: ubuntu-latest

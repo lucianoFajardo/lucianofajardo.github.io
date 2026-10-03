@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 import SakuraBackground from "../components/SakuraBackground.astro";
+
+const { title = "Junior Dev Lf" } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,7 +19,7 @@ import SakuraBackground from "../components/SakuraBackground.astro";
 			href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Fira+Code:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
 			rel="stylesheet"
 		/>
-		<title>Junior Dev Lf</title>
+		<title>{title}</title>
 	</head>
 	<body
 		class="min-h-dvh bg-[#090408] text-pink-50 font-['Noto_Sans_JP'] p-4 md:p-8 relative"

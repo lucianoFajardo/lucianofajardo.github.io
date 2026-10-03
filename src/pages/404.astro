@@ -1,48 +1,35 @@
 ---
+import Scanline from "src/components/Scanline.astro";
+import TerminalHeader from "src/components/TerminalHeader.astro";
+import Layout from "src/layouts/Layout.astro";
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>404 - not found</title>
-    </head>
-    <body>
-        <style>
-            body {
-                font-family: system-ui, sans-serif;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                margin: 0;
-                background-color: #0f172a;
-                color: white;
-                flex: content;
-                flex-direction: column;
-            }
-            h1 {
-                font-size: 3rem;
-            }
-            button {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-top: 20px;
-                padding: 10px 20px;
-                font-size: 1rem;
-                cursor: pointer;
-                background-color: #ffffff;
-                color: black;
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
-            }
-        </style>
-        <h1>404 - no se encontró la página :(</h1>
-        <button id="click">Volver!</button>
-        <script >   
-            document.body.addEventListener("click" , () => {
-                window.location.href = "/"
-            })
-        </script>
-    </body>
-</html>
+<Layout title="404 | Página no encontrada">
+	<Scanline />
+	<main class="relative z-10 grid min-h-[calc(100dvh-4rem)] place-items-center">
+		<section
+			aria-labelledby="error-title"
+			class="terminal-window w-full max-w-3xl overflow-hidden rounded-lg bg-[#1f0a1c]"
+		>
+			<TerminalHeader />
+			<div class="px-6 py-12 sm:px-12 sm:py-16">
+				<p class="font-['Fira_Code'] text-sm text-pink-300/70">ERROR 404 <span class="text-pink-100/40">/</span> RUTA NO ENCONTRADA</p>
+				<h1 id="error-title" class="mt-5 font-['DotGothic16'] text-7xl leading-none text-pink-300 text-neon sm:text-8xl">
+					404<span class="text-pink-100">.</span>
+				</h1>
+				<p class="mt-6 max-w-xl text-lg leading-relaxed text-pink-50 sm:text-xl">
+					Parece que esta página se perdió entre líneas de código.
+				</p>
+				<p class="mt-2 max-w-xl text-sm leading-relaxed text-pink-100/60 sm:text-base">
+					La dirección puede haber cambiado o ya no estar disponible.
+				</p>
+				<a
+					href="/"
+					class="mt-8 inline-flex min-h-12 items-center gap-3 border border-pink-400/60 bg-pink-500/10 px-5 py-3 font-['Fira_Code'] text-sm text-pink-100 transition-colors hover:border-pink-300 hover:bg-pink-500/20 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pink-300"
+				>
+					<span aria-hidden="true">&larr;</span> Volver al inicio
+				</a>
+			</div>
+		</section>
+	</main>
+</Layout>

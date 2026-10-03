@@ -1,23 +1,35 @@
-export const logsPersonals = [
-    {
-        date: "2025-11-12",
-        title: "Primera Contribución",
-        content:
-            "Descubrí que un cada pequeño cambio en el código puede tener un gran impacto. Es como plantar una semilla y ver cómo crece. :) ",
-        color: "green",
-    },
-    {
-        date: "2025-11-20",
-        title: "El Gran Bloqueo",
-        content:
-            "Diseñando la UI de este portafolio. Quería que se sintiera como un viaje visual, pero me encontré con un bloqueo creativo. A veces, el código es como un lienzo en blanco, y no sé qué pintar.",
-        color: "pink",
-    },
-    {
-        date: "2026-01-05",
-        title: "Modo Aprendizaje",
-        content:
-            "Investigando optimización de rendimiento. Es como afinar un motor para que funcione más suave y rápido. Cada línea de código es como un engranaje, y quiero que todo funcione en armonía.",
-        color: "yellow",
-    },
+import getRandomColor from "../server/random_colors";
+
+interface PersonalLogModel {
+  id: number;
+  date: string;
+  title: string;
+  content: string;
+  color: () => Promise<string>;
+}
+
+const randomId = () => Math.floor(Math.random() * 1000000);
+
+export const logsPersonals: PersonalLogModel[] = [
+  {
+    id: randomId(),
+    date: new Date().toISOString().split("T")[0],
+    title: "Descubriendo nuevas experiencias",
+    content: "Explorando nuevas oportunidades y aprendiendo cosas nuevas cada día.",
+    color: () => getRandomColor(),
+  },
+  {
+    id: randomId(),
+    date: new Date().toISOString().split("T")[0],
+    title: "Implementando nuevas funcionalidades",
+    content: "Implementando nuevas funcionalidades y mejorando la experiencia del usuario.",
+    color: () => getRandomColor(),
+  },
+   {
+    id: randomId(),
+    date: new Date().toISOString().split("T")[0],
+    title: "Descubriendo nuevas experiencias",
+    content: "Aprendiendo nuevas tecnologías y aplicándolas en proyectos personales.",
+    color: () => getRandomColor(),
+  },
 ];
