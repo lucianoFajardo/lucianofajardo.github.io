@@ -1,67 +1,59 @@
 ---
-import { logsPersonals } from "../lib/models/personal-log.js";
+import proyectType from "../lib/models/proyect-post";
 ---
 
 <section
-    class="mt-20 mb-10 text-center border-t border-pink-900/50 pt-10 font-['Fira_Code']"
+  class="mt-20 mb-10 text-center border-t border-pink-900/50 pt-10 font-['Fira_Code']"
 >
-    <h2
-        class="font-bold mb-8 flex items-center gap-3 font-['DotGothic16'] text-2xl text-pink-100"
-    >
-        <span
-            class="bg-pink-500/10 text-pink-500 border border-pink-500/30 px-2 py-1 rounded text-sm text-neon font-['Fira_Code'] tracking-widest"
-            >CMD</span
-        > ls ./Comentarios_personales
-    </h2>
-   <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6">
-      {
-        logsPersonals.map(async (log) => {
-          const color = await log.color();
-          return (
-           <article
-  class:list={[
-    "bg-[#1f0a1c]/80 border border-pink-900 rounded-lg overflow-hidden font-mono text-sm reveal",
-    `delay-${(log.id % 3) + 1}`,
-    "transition-all duration-300 hover:-translate-y-1",
-    "hover:shadow-[0_0_20px_var(--log-color)]",
-    log.id % 2 === 0 ? "md:col-span-2" : "",
-  ]}
-  style={`--log-color: ${color};`}
->
-  <!-- barra tipo terminal, reutilizando el patrón de TerminalHeader -->
-  <div class="bg-[#2a102a] border-b border-pink-900/50 px-3 py-2 flex items-center gap-2">
-    <div class="flex gap-1.5">
-      <div class="w-2.5 h-2.5 rounded-full bg-red-500/50" />
-      <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
-      <div class="w-2.5 h-2.5 rounded-full" style={`background-color: ${color}`} />
-    </div>
-    <span class="text-pink-300/80 truncate">~/logs/{log.title.toLowerCase().replace(/\s+/g, "_")}.log</span>
-  </div>
-  <div class="p-4 space-y-1">
-    <p class="text-neon text-pink-300">
-      <span class="text-green-400">$</span> cat {log.title}.log
-    </p>
-    <p class="text-neon tracking-wide">"{log.content}"</p>
-    <p class="text-pink-500/70 text-xs mt-2">[{log.date}] · proceso finalizado ✓</p>
-  </div>
-</article>
-          );
-        })
-      }
-    </div>
-    <div class="flex justify-center">
-        <button
-            class="text-sm text-neon font-['Fira_Code'] tracking-widest mt-8 alert"
+  <h2
+    class="font-bold mb-8 flex items-center gap-3 font-['DotGothic16'] text-2xl text-pink-100"
+  >
+    <span
+      class="bg-pink-500/10 text-pink-500 border border-pink-500/30 px-2 py-1 rounded text-sm text-neon font-['Fira_Code'] tracking-widest"
+      >CMD</span
+    > ls ./Proyectos_Realizados
+  </h2>
+
+  {
+    proyectType.map((i) => (
+      <div class="group w-full overflow-hidden rounded border border-pink-900/60 bg-[#1f0a1c]/80 transition-all duration-300 hover:-translate-y-1 hover:border-pink-500/50 hover:shadow-[0_0_20px_rgba(236,72,153,0.15)] lg:flex" onclick={`window.open('${i.urlWeb}', '_blank')`}>
+        <div
+          class="relative h-48 flex-none overflow-hidden bg-cover bg-center lg:h-auto lg:w-48"
+          style={`background-image: url('${i.imgUrl}')`}
+          title={i.title}
         >
-            <span class="hover:text-pink-400/80 transition-colors duration-300">
-                <a href="/logs-personal" class="hover:text-pink-400/80 transition-colors duration-300">
-                    console.log("Ver más comentarios personales...");
-                </a>
-            </span>
-        </button>
-    </div>
+          <div class="absolute inset-0 bg-linear-to-t from-[#1f0a1c]/70 to-transparent"></div>
+        </div>
 
+        <div class="flex flex-col justify-between p-5 leading-normal lg:flex-1">
+          <div class="mb-8">
+            <p class="mb-4 flex items-center gap-2 text-xs tracking-widest text-pink-400/80">
+              <span class="h-2 w-2 rounded-full bg-pink-500 shadow-[0_0_8px_rgba(236,72,153,0.7)]" />
+              Personal Project :)
+            </p>
 
-    
+            <h3 class="mb-3 font-['DotGothic16'] text-xl font-bold text-pink-100">
+              {i.title}
+            </h3>
 
+            <p class="text-sm leading-relaxed text-pink-200/70">
+              {i.description}
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3 border-t border-pink-900/50 pt-4">
+            <img
+              class="h-10 w-10 rounded-full border border-pink-500/40 object-cover"
+              src={i.imgAuth}
+              alt={`Avatar of ${i.author}`}
+            />
+            <div class="text-sm">
+              <p class="leading-none text-pink-100">{i.author}</p>
+              <p class="mt-1 text-xs text-pink-400/70">{i.date}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))
+  }
 </section>
