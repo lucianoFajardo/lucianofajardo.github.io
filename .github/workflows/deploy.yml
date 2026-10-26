@@ -21,11 +21,6 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v5
 
-      - name: Connect to Tailscale
-        uses: tailscale/github-action@v2
-        with:
-          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
-
       - name: Install, build, and upload your site
         uses: withastro/action@v5
         env:
@@ -33,11 +28,6 @@ jobs:
           JSONBIN_BIN_ID: ${{ secrets.JSONBIN_BIN_ID }}
           PUBLIC_GITHUB_USERNAME: 'lucianofajardo'
           GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_PORT: ${{ secrets.DB_PORT }}
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_NAME: ${{ secrets.DB_NAME }}
   deploy:
     needs: build
     runs-on: ubuntu-latest
